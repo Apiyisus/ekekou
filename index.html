@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Frigorífico - Catálogo de Carnes</title>
+</head>
+<body>
+
+<header>
+    <h1>Frigorífico - Catálogo de Carnes</h1>
+</header>
+<!--CARNES-->
+<div class="container">
+    <section id="catalogo">
+        <h2>Catálogo de Carnes</h2>
+        <div class="product" data-name="Carne de Res" data-price="500">
+            <h3>Carne de Res</h3>
+            <p>Precio: $500/kg</p>
+            <label for="cantidad1">Cantidad (kg):</label>
+            <input type="number" id="cantidad1" value="1" min="1">
+            <button onclick="agregarAlCarrito('Carne de Res', 500, document.getElementById('cantidad1').value)">Añadir al Carrito</button>
+        </div>
+        <div class="product" data-name="Carne de Cerdo" data-price="400">
+            <h3>Carne de Cerdo</h3>
+            <p>Precio: $400/kg</p>
+            <label for="cantidad2">Cantidad (kg):</label>
+            <input type="number" id="cantidad2" value="1" min="1">
+            <button onclick="agregarAlCarrito('Carne de Cerdo', 400, document.getElementById('cantidad2').value)">Añadir al Carrito</button>
+        </div>
+    </section>
+
+<!--Carrito-->
+    <section id="carrito" class="car">
+        <h2>Carrito de Compras</h2>
+        <ul id="cartItems"></ul>
+        <p>Total: $<span id="totalPrice">0</span></p>
+        <button onclick="mostrarFormulario()">Proceder a la Compra</button>
+    </section>
+
+<!--Formulario al confirmar la compra-->
+    <section id="checkout" style="display:none;">
+        <h2>Completar Compra</h2>
+        <form id="formCheckout">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" required>
+            
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="direccion">Dirección de envío:</label>
+            <input type="text" id="direccion" required>
+            
+            <label for="pago">Método de pago:</label>
+            <select id="pago">
+                <option value="tarjeta">Tarjeta de crédito</option>
+                <option value="efectivo">Pago en efectivo</option>
+            </select>
+            <button type="submit">Confirmar Pedido</button>
+        </form>
+    </section>
+</div>
+
+<!--copyraight-->
+<footer>
+    <p>Ekeko - Todos los derechos reservados</p>
+</footer>
+
+<!--javass-->
+<script>
+    let carrito = [];
+    let total = 0;
+
+
+    // Función para agregar productos al carrito
+    function agregarAlCarrito(nombre, precio, cantidad) {
+        carrito.push({ nombre, precio, cantidad });
+        total += precio * cantidad;
+        actualizarCarrito();
+    }
+
+    // Función para actualizar el carrito 
+    function actualizarCarrito() {
+        const cartItems = document.getElementById('cartItems');
+        cartItems.innerHTML = '';
+        carrito.forEach(item => {
+            cartItems.innerHTML += `<li>${item.nombre} - ${item.cantidad} kg - $${item.precio * item.cantidad}</li>`;
+        });
+        document.getElementById('totalPrice').innerText = total;
+    }
+
+    // Función para mostrar el formulario 
+    function mostrarFormulario() {
+        document.getElementById('checkout').style.display = 'block';
+        document.getElementById('carrito').style.display = 'none';
+    }
+
+    // Evento confirmación del formulario
+    document.getElementById('formCheckout').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Pedido confirmado. Recibirás un correo con los detalles.');
+    });
+</script>
+
+</body>
+</html>

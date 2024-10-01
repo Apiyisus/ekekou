@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header, footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/*El cuadro blanco*/
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/*En catalogo*/
+.product {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px 0;
+}
+.product h3 {
+    margin: 0;
+}
+
+/*Carritou*/
+.car {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+input, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
